@@ -1,0 +1,20 @@
+name: wf-ci-develop
+on:
+  pull_request:
+  branches:
+  - develop
+  types:
+    - opened
+    - synchronize
+jobs:
+   linting-develop-job:
+     runs-on: ubuntu-latest
+     steps:
+         - name: Checkout Repostiory
+           uses: actions/chechout@v4
+         - name: Lint HTML Files with HTMLHint
+           run: npx htmlhint "**/*.html"
+         - name: Lint CSS Files with stylelint
+           run: npx stylelint "**/*.css"
+         - name: Test Building with Parcel
+           run: npx parcel build "./src/index.html" --dist-dir "./dist" --public-url "./"
