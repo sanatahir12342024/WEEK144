@@ -2,7 +2,7 @@ name: wf-ci-develop
 on:
   pull_request:
   branches:
-  - develop
+    - develop
   types:
     - opened
     - synchronize
